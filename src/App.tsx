@@ -1,6 +1,5 @@
 import { FormEvent, useEffect, useRef, useState } from 'react';
-import {ArrowLeft, ArrowUpRight, Check, ChevronDown, Globe2, GraduationCap, Mail, Menu, MoveRight, Network, Send, Target, Users, X, } from 'lucide-react';
-
+import {ArrowLeft, ArrowUpRight, Check, ChevronDown, Globe2, GraduationCap, Mail, Menu, MoveRight, Network, Send, Target, Users, X, ArrowDownToLine,} from 'lucide-react';
 const images = {
   hero: 'https://images.pexels.com/photos/8617759/pexels-photo-8617759.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   digital: 'https://images.pexels.com/photos/5530483/pexels-photo-5530483.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
@@ -928,7 +927,34 @@ function Article({
     newsTranslations.bs[item.id];
 
   const paragraphs = translated.body.split('\n\n');
-  const itemImages = 'images' in item ? item.images : [];
+
+  const itemImages =
+    'images' in item && Array.isArray(item.images)
+      ? item.images
+      : item.image
+        ? [item.image]
+        : [];
+
+  const relatedNews = newsItems
+    .filter((news) => news.id !== item.id)
+    .slice(0, 3);
+
+  const isZagrebArticle =
+    item.id === 'radionica-digitalne-pismenosti-zagreb';
+
+  const isDigitalSkillsArticle =
+    item.id === 'digitalne-vjestine-podgorica';
+
+  const isKickoffArticle =
+    item.id === 'pocetni-sastanak';
+
+  const isSymposiumArticle =
+    item.id === 'simpozij-podgorica';
+
+  const hasPdf =
+    'pdf' in item &&
+    typeof item.pdf === 'string' &&
+    item.pdf.length > 0;
 
   return (
     <section className="article-page section-wrap">
@@ -942,19 +968,247 @@ function Article({
 
       <h1>{translated.title}</h1>
 
-      {item.image && (
-        <img
-          className="article-image"
-          src={item.image}
-          alt={translated.title}
-        />
+      {hasPdf ? (
+        <div className="pdf-article-layout pdf-article-stacked">
+          <div className="pdf-article-content">
+            {paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+
+          <div className="pdf-article-preview">
+            <div className="pdf-viewer">
+              <iframe
+                src={item.pdf}
+                title={translated.title}
+              />
+            </div>
+
+            <a
+              className="pdf-download"
+              href={item.pdf}
+              download
+              target="_blank"
+              rel="noreferrer"
+            >
+              <ArrowDownToLine size={18} />
+              {language === 'en' ? 'Download PDF' : 'Skini PDF'}
+            </a>
+          </div>
+        </div>
+      ) : isDigitalSkillsArticle ? (
+        <div className="digital-skills-article">
+          <div className="digital-skills-copy">
+            {paragraphs.slice(0, 2).map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+
+            {paragraphs.length > 2 && (
+              <>
+                <p>{paragraphs[2].split('\n')[0]}</p>
+
+                <ul className="digital-skills-checklist">
+                  {paragraphs[2]
+                    .split('\n')
+                    .slice(1)
+                    .filter((line) => line.trim() !== '')
+                    .map((line, index) => (
+                      <li key={index}>
+                        <Check size={15} />
+                        <span>{line}</span>
+                      </li>
+                    ))}
+                </ul>
+              </>
+            )}
+
+            {paragraphs.slice(3).map((paragraph, index) => (
+              <p
+                className={index === 0 ? 'digital-skills-goal' : ''}
+                key={index + 3}
+              >
+                {index === 0 && <Target size={15} />}
+                <span>{paragraph}</span>
+              </p>
+            ))}
+          </div>
+
+          {itemImages.length > 0 && (
+            <div className="digital-skills-gallery">
+              {itemImages.map((image, index) => (
+                <img
+                  key={`${image}-${index}`}
+                  src={image}
+                  alt={`${translated.title} – ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      ) : isZagrebArticle ? (
+        <div className="zagreb-article-layout">
+          {itemImages.length > 0 && (
+            <img
+              className="zagreb-article-image"
+              src={itemImages[0]}
+              alt={translated.title}
+            />
+          )}
+
+          <div className="article-copy">
+            {paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+
+          {itemImages.length > 1 && (
+            <div className="article-gallery">
+              {itemImages.slice(1).map((image, index) => (
+                <img
+                  key={`${image}-${index}`}
+                  className="article-image"
+                  src={image}
+                  alt={`${translated.title} – ${index + 2}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      ) : isKickoffArticle ? (
+        <div className="kickoff-article-layout">
+          {itemImages.length > 0 && (
+            <img
+              className="kickoff-article-image"
+              src={itemImages[0]}
+              alt={translated.title}
+            />
+          )}
+
+          <div className="article-copy">
+            {paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      ) : isSymposiumArticle && itemImages.length >= 2 ? (
+        <div className="symposium-article symposium-article-podgorica">
+          <div className="symposium-intro">
+            {paragraphs.slice(0, 2).map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+
+          <img
+            className="symposium-main-image"
+            src={itemImages[0]}
+            alt={`${translated.title} – grupna fotografija`}
+          />
+
+          <div className="symposium-row symposium-row-podgorica">
+            <img
+              src={itemImages[1]}
+              alt={`${translated.title} – fotografija učesnika`}
+            />
+
+            <div className="symposium-text">
+              {paragraphs.slice(2).map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+
+          {itemImages.length > 2 && (
+            <div className="article-gallery">
+              {itemImages.slice(2).map((image, index) => (
+                <img
+                  key={`${image}-${index + 2}`}
+                  className="article-image"
+                  src={image}
+                  alt={`${translated.title} – ${index + 3}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      ) : (
+        <>
+          {itemImages.length > 0 && (
+            <img
+              className="article-image"
+              src={itemImages[0]}
+              alt={translated.title}
+            />
+          )}
+
+          <div className="article-copy">
+            {paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+
+          {itemImages.length > 1 && (
+            <div className="article-gallery">
+              {itemImages.slice(1).map((image, index) => (
+                <img
+                  key={`${image}-${index}`}
+                  className="article-image"
+                  src={image}
+                  alt={`${translated.title} – ${index + 2}`}
+                />
+              ))}
+            </div>
+          )}
+        </>
       )}
 
-      <div className="article-copy">
-        {paragraphs.map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
-        ))}
-      </div>
+      <section className="related-news">
+        <div className="section-title-row">
+          <div>
+            <p className="eyebrow">
+              <span /> {t.home.latest}
+            </p>
+            <h2>{t.news.title}</h2>
+          </div>
+
+          <button
+            className="text-button"
+            onClick={() => go('vijesti')}
+          >
+            {t.news.read} <ArrowUpRight size={17} />
+          </button>
+        </div>
+
+        <div className="featured-grid">
+          {relatedNews.map((news) => {
+            const translatedNews =
+              newsTranslations[language][news.id] ??
+              newsTranslations.bs[news.id];
+
+            return (
+              <button
+                className="featured-card"
+                key={news.id}
+                onClick={() => go(`vijesti/${news.id}`)}
+              >
+                {news.image && (
+                  <img
+                    src={news.image}
+                    alt={translatedNews.title}
+                  />
+                )}
+
+                <span>{t.news.category}</span>
+                <h3>{translatedNews.title}</h3>
+                <p>{translatedNews.excerpt}</p>
+
+                <b>
+                  {t.news.read} <ArrowUpRight size={15} />
+                </b>
+              </button>
+            );
+          })}
+        </div>
+      </section>
     </section>
   );
 }
