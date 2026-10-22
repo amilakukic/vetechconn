@@ -1724,5 +1724,5 @@ function Footer({ t, go, language }: { t: Copy; go: (path: string) => void; lang
   className="eu-flag"
   src="/euflag.jpg"
   alt="Zastava Evropske unije"
-/><p>{notice}</p></div><div className="section-wrap footer-bottom"><span>© 2024 VETechConn</span></div></footer>; }
+/><p>{notice}</p></div></footer>; }
 export default App;
