@@ -1,5 +1,7 @@
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import {ArrowLeft, ArrowUpRight, Check, ChevronDown, Globe2, GraduationCap, Mail, Menu, MoveRight, Network, Send, Target, Users, X, ArrowDownToLine,} from 'lucide-react';
+import { feature } from 'topojson-client';
+import topoDataRaw from 'world-atlas/countries-50m.json';
 const images = {
   hero: 'https://images.pexels.com/photos/8617759/pexels-photo-8617759.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   digital: 'https://images.pexels.com/photos/5530483/pexels-photo-5530483.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
@@ -7,59 +9,59 @@ const images = {
   coding: 'https://images.pexels.com/photos/5621952/pexels-photo-5621952.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
 };
 type Language = 'bs' | 'sr' | 'hr' | 'sl' | 'en';
-type Page = 'home' | 'about' | 'partners' | 'news' | 'contact' | 'article';
+type Page = 'home' | 'about' | 'partners' | 'news' | 'gallery' | 'contact' | 'article';
 type Copy = {
-  nav: { home: string; about: string; partners: string; news: string; contact: string };
+  nav: { home: string; about: string; partners: string; news: string; gallery: string; contact: string };
   home: { kicker: string; title: string; lead: string; explore: string; latest: string; stat: string; impact: string; impactText: string; viewNews: string };
   about: { kicker: string; title: string; intro: string; body: string; groups: string; goal: string; goalText: string };
   partners: { kicker: string; title: string; lead: string };
-  news: { kicker: string; title: string; lead: string; read: string; back: string; category: string };
+  news: { kicker: string; title: string; lead: string; read: string; back: string; category: string; pastEvents: string; upcomingEvents: string };
   contact: { kicker: string; title: string; lead: string; name: string; email: string; message: string; send: string; note: string; success: string };
   footer: string;
 };
 const copy: Record<Language, Copy> = {
   bs: {
-    nav: { home: 'Početna', about: 'O nama', partners: 'Partneri', news: 'Vijesti', contact: 'Kontakt' },
+    nav: { home: 'Početna', about: 'O nama', partners: 'Partneri', news: 'Vijesti', gallery: 'Galerija', contact: 'Kontakt' },
     home: { kicker: 'ERASMUS+ EDU-CB-VET', title: 'Digitalne vještine za bolju budućnost.', lead: 'Zajedno gradimo mostove između obrazovanja, tehnologije i tržišta rada u Bosni i Hercegovini, Crnoj Gori i Hrvatskoj.', explore: 'Istražite projekat', latest: 'Najnovije vijesti', stat: 'aktivnih partnera', impact: 'Znanje koje povezuje.', impactText: 'VETechConn je inicijativa posvećena unapređenju digitalnih vještina instruktora strukovnog obrazovanja i obuke.', viewNews: 'Pogledajte vijesti' },
     about: { kicker: 'O NAMA', title: 'Od ideje do uticaja.', intro: 'VETechConn unapređuje digitalne vještine instruktora strukovnog obrazovanja i obuke.', body: 'Projekat povezuje stručnjake i institucije u Bosni i Hercegovini, Crnoj Gori i Hrvatskoj. Kroz međunarodnu saradnju, praktične radionice i dostupne digitalne resurse stvaramo sigurnije i savremenije obrazovanje.', groups: 'Ciljne grupe', goal: 'Naši ciljevi', goalText: 'Povezati obrazovanje, inovacije i tržište rada kroz razmjenu znanja i razvoj novih programa.' },
     partners: { kicker: 'ZAJEDNO SMO JAČI', title: 'Mreža koja pokreće promjenu.', lead: 'Naš projekat okuplja institucije, škole i stručnjake iz regiona i Evrope.' },
-    news: { kicker: 'VIJESTI I AKTIVNOSTI', title: 'Znanje u pokretu.', lead: 'Pratite radionice, susrete i rezultate projekta.', read: 'Pročitajte više', back: 'Nazad na vijesti', category: 'AKTIVNOST PROJEKTA' },
+    news: { kicker: 'VIJESTI I AKTIVNOSTI', title: 'Znanje u pokretu.', lead: 'Pratite radionice, susrete i rezultate projekta.', read: 'Pročitajte više', back: 'Nazad na vijesti', category: 'AKTIVNOST PROJEKTA', pastEvents: 'Stare vijesti', upcomingEvents: 'Nove vijesti' },
     contact: { kicker: 'KONTAKT', title: 'Razgovarajmo o budućnosti.', lead: 'Imate pitanje ili želite da saznate više o projektu? Pošaljite nam poruku.', name: 'Ime i prezime', email: 'E-mail adresa', message: 'Poruka', send: 'Pošalji poruku', note: 'Klikom na dugme otvoriće se Outlook sa pripremljenom porukom.', success: 'Vaša poruka je pripremljena u Outlooku.' },
     footer: 'Finansirano od strane Evropske unije. Stavovi i mišljenja izraženi su isključivo stavovi autora.',
   },
   en: {
-    nav: { home: 'Home', about: 'About us', partners: 'Partners', news: 'News', contact: 'Contact' },
+    nav: { home: 'Home', about: 'About us', partners: 'Partners', news: 'News', gallery: 'Gallery', contact: 'Contact' },
     home: { kicker: 'ERASMUS+ EDU-CB-VET', title: 'Digital skills for a better future.', lead: 'Together we build bridges between education, technology and the labour market in Bosnia and Herzegovina, Montenegro and Croatia.', explore: 'Explore the project', latest: 'Latest news', stat: 'active partners', impact: 'Knowledge that connects.', impactText: 'VETechConn is an initiative dedicated to improving the digital skills of vocational education and training instructors.', viewNews: 'View the news' },
     about: { kicker: 'ABOUT US', title: 'From idea to impact.', intro: 'VETechConn improves the digital skills of vocational education and training instructors.', body: 'The project connects experts and institutions in Bosnia and Herzegovina, Montenegro and Croatia. Through international cooperation, practical workshops and accessible digital resources, we create more confident and modern education.', groups: 'Target groups', goal: 'Our goals', goalText: 'Connect education, innovation and the labour market through knowledge exchange and new programme development.' },
     partners: { kicker: 'STRONGER TOGETHER', title: 'A network that drives change.', lead: 'Our project brings together institutions, schools and experts from the region and Europe.' },
-    news: { kicker: 'NEWS & ACTIVITIES', title: 'Knowledge in motion.', lead: 'Follow our workshops, meetings and project results.', read: 'Read more', back: 'Back to news', category: 'PROJECT ACTIVITY' },
+    news: { kicker: 'NEWS & ACTIVITIES', title: 'Knowledge in motion.', lead: 'Follow our workshops, meetings and project results.', read: 'Read more', back: 'Back to news', category: 'PROJECT ACTIVITY', pastEvents: 'Past Events', upcomingEvents: "What's Next?" },
     contact: { kicker: 'CONTACT', title: 'Let’s talk about the future.', lead: 'Have a question or want to learn more about the project? Send us a message.', name: 'Full name', email: 'Email address', message: 'Message', send: 'Send message', note: 'Clicking the button will open Outlook with a prepared message.', success: 'Your message has been prepared in Outlook.' },
     footer: 'Funded by the European Union. Views and opinions expressed are solely those of the authors.',
   },
   hr: {
-    nav: { home: 'Početna', about: 'O nama', partners: 'Partneri', news: 'Vijesti', contact: 'Kontakt' },
+    nav: { home: 'Početna', about: 'O nama', partners: 'Partneri', news: 'Vijesti', gallery: 'Galerija', contact: 'Kontakt' },
     home: { kicker: 'ERASMUS+ EDU-CB-VET', title: 'Digitalne vještine za bolju budućnost.', lead: 'Zajedno gradimo mostove između obrazovanja, tehnologije i tržišta rada u Bosni i Hercegovini, Crnoj Gori i Hrvatskoj.', explore: 'Istražite projekt', latest: 'Najnovije vijesti', stat: 'aktivnih partnera', impact: 'Znanje koje povezuje.', impactText: 'VETechConn je inicijativa posvećena unapređenju digitalnih vještina instruktora strukovnog obrazovanja i osposobljavanja.', viewNews: 'Pogledajte vijesti' },
     about: { kicker: 'O NAMA', title: 'Od ideje do utjecaja.', intro: 'VETechConn unapređuje digitalne vještine instruktora strukovnog obrazovanja i osposobljavanja.', body: 'Projekt povezuje stručnjake i institucije u Bosni i Hercegovini, Crnoj Gori i Hrvatskoj. Kroz međunarodnu suradnju, praktične radionice i dostupne digitalne resurse stvaramo sigurnije i suvremenije obrazovanje.', groups: 'Ciljne skupine', goal: 'Naši ciljevi', goalText: 'Povezati obrazovanje, inovacije i tržište rada kroz razmjenu znanja i razvoj novih programa.' },
     partners: { kicker: 'ZAJEDNO SMO JAČI', title: 'Mreža koja pokreće promjenu.', lead: 'Naš projekt okuplja institucije, škole i stručnjake iz regije i Europe.' },
-    news: { kicker: 'VIJESTI I AKTIVNOSTI', title: 'Znanje u pokretu.', lead: 'Pratite radionice, susrete i rezultate projekta.', read: 'Pročitajte više', back: 'Natrag na vijesti', category: 'AKTIVNOST PROJEKTA' },
+    news: { kicker: 'VIJESTI I AKTIVNOSTI', title: 'Znanje u pokretu.', lead: 'Pratite radionice, susrete i rezultate projekta.', read: 'Pročitajte više', back: 'Natrag na vijesti', category: 'AKTIVNOST PROJEKTA', pastEvents: 'Stare vijesti', upcomingEvents: 'Nove vijesti' },
     contact: { kicker: 'KONTAKT', title: 'Razgovarajmo o budućnosti.', lead: 'Imate pitanje ili želite saznati više o projektu? Pošaljite nam poruku.', name: 'Ime i prezime', email: 'E-mail adresa', message: 'Poruka', send: 'Pošalji poruku', note: 'Klikom na gumb otvorit će se Outlook s pripremljenom porukom.', success: 'Vaša je poruka pripremljena u Outlooku.' },
     footer: 'Financirano sredstvima Europske unije. Stavovi i mišljenja izraženi su isključivo stavovi autora.',
   },
   sr: {
-    nav: { home: 'Почетна', about: 'О нама', partners: 'Партнери', news: 'Вести', contact: 'Контакт' },
+    nav: { home: 'Почетна', about: 'О нама', partners: 'Партнери', news: 'Вести', gallery: 'Галерија', contact: 'Контакт' },
     home: { kicker: 'ERASMUS+ EDU-CB-VET', title: 'Дигиталне вештине за бољу будућност.', lead: 'Заједно градимо мостове између образовања, технологије и тржишта рада у Босни и Херцеговини, Црној Гори и Хрватској.', explore: 'Истражите пројекат', latest: 'Најновије вести', stat: 'активних партнера', impact: 'Знање које повезује.', impactText: 'VETechConn је иницијатива посвећена унапређењу дигиталних вештина инструктора стручног образовања и обуке.', viewNews: 'Погледајте вести' },
     about: { kicker: 'О НАМА', title: 'Од идеје до утицаја.', intro: 'VETechConn унапређује дигиталне вештине инструктора стручног образовања и обуке.', body: 'Пројекат повезује стручњаке и институције у Босни и Херцеговини, Црној Гори и Хрватској. Кроз међународну сарадњу, практичне радионице и доступне дигиталне ресурсе стварамо сигурније и савременије образовање.', groups: 'Циљне групе', goal: 'Наши циљеви', goalText: 'Повезати образовање, иновације и тржиште рада кроз размену знања и развој нових програма.' },
     partners: { kicker: 'ЗАЈЕДНО СМО ЈАЧИ', title: 'Мрежа која покреће промену.', lead: 'Наш пројекат окупља институције, школе и стручњаке из региона и Европе.' },
-    news: { kicker: 'ВЕСТИ И АКТИВНОСТИ', title: 'Знање у покрету.', lead: 'Пратите радионице, сусрете и резултате пројекта.', read: 'Прочитајте више', back: 'Назад на вести', category: 'АКТИВНОСТ ПРОЈЕКТА' },
+    news: { kicker: 'ВЕСТИ И АКТИВНОСТИ', title: 'Знање у покрету.', lead: 'Пратите радионице, сусрете и резултате пројекта.', read: 'Прочитајте више', back: 'Назад на вести', category: 'АКТИВНОСТ ПРОЈЕКТА', pastEvents: 'Старе вести', upcomingEvents: 'Нове вести' },
     contact: { kicker: 'КОНТАКТ', title: 'Разговарајмо о будућности.', lead: 'Имате питање или желите да сазнате више о пројекту? Пошаљите нам поруку.', name: 'Име и презиме', email: 'Е-mail адреса', message: 'Порука', send: 'Пошаљи поруку', note: 'Кликом на дугме отвориће се Outlook са припремљеном поруком.', success: 'Ваша порука је припремљена у Outlook-у.' },
     footer: 'Финансирано средствима Европске уније. Ставови и мишљења изражени су искључиво ставови аутора.',
   },
   sl: {
-    nav: { home: 'Domov', about: 'O nas', partners: 'Partnerji', news: 'Novice', contact: 'Kontakt' },
+    nav: { home: 'Domov', about: 'O nas', partners: 'Partnerji', news: 'Novice', gallery: 'Galerija', contact: 'Kontakt' },
     home: { kicker: 'ERASMUS+ EDU-CB-VET', title: 'Digitalne veščine za boljšo prihodnost.', lead: 'Skupaj gradimo mostove med izobraževanjem, tehnologijo in trgom dela v Bosni in Hercegovini, Črni gori in na Hrvaškem.', explore: 'Raziščite projekt', latest: 'Najnovejše novice', stat: 'aktivnih partnerjev', impact: 'Znanje, ki povezuje.', impactText: 'VETechConn je pobuda, namenjena izboljšanju digitalnih veščin inštruktorjev poklicnega izobraževanja in usposabljanja.', viewNews: 'Oglejte si novice' },
     about: { kicker: 'O NAS', title: 'Od ideje do vpliva.', intro: 'VETechConn izboljšuje digitalne veščine inštruktorjev poklicnega izobraževanja in usposabljanja.', body: 'Projekt povezuje strokovnjake in ustanove v Bosni in Hercegovini, Črni gori in na Hrvaškem. Z mednarodnim sodelovanjem, praktičnimi delavnicami in dostopnimi digitalnimi viri ustvarjamo varnejše in sodobnejše izobraževanje.', groups: 'Ciljne skupine', goal: 'Naši cilji', goalText: 'Povezati izobraževanje, inovacije in trg dela z izmenjavo znanja in razvojem novih programov.' },
     partners: { kicker: 'SKUPAJ SMO MOČNEJŠI', title: 'Mreža, ki ustvarja spremembe.', lead: 'Naš projekt združuje ustanove, šole in strokovnjake iz regije in Evrope.' },
-    news: { kicker: 'NOVICE IN DEJAVNOSTI', title: 'Znanje v gibanju.', lead: 'Spremljajte delavnice, srečanja in rezultate projekta.', read: 'Preberite več', back: 'Nazaj na novice', category: 'PROJEKTNA DEJAVNOST' },
+    news: { kicker: 'NOVICE IN DEJAVNOSTI', title: 'Znanje v gibanju.', lead: 'Spremljajte delavnice, srečanja in rezultate projekta.', read: 'Preberite več', back: 'Nazaj na novice', category: 'PROJEKTNA DEJAVNOST', pastEvents: 'Pretekle novice', upcomingEvents: 'Prihajajoče novice' },
     contact: { kicker: 'KONTAKT', title: 'Pogovorimo se o prihodnosti.', lead: 'Imate vprašanje ali želite izvedeti več o projektu? Pošljite nam sporočilo.', name: 'Ime in priimek', email: 'E-poštni naslov', message: 'Sporočilo', send: 'Pošlji sporočilo', note: 'S klikom na gumb se bo odprl Outlook s pripravljeno vsebino.', success: 'Vaše sporočilo je pripravljeno v Outlooku.' },
     footer: 'Financira Evropska unija. Izražena stališča in mnenja pripadajo izključno avtorjem.',
   },
@@ -67,11 +69,13 @@ const copy: Record<Language, Copy> = {
 const newsItems = [  
   {
     id: 'digitalne-vjestine-moderne-ucionice',
+    eventType: 'past',
     title: 'Digitalne vještine za moderne učionice',
     excerpt: 'Mašinski fakultet Univerziteta „Džemal Bijedić“ u Mostaru realizovao je program cjeloživotnog učenja za unapređenje digitalnih kompetencija nastavnika.',
     date: '',
     category: 'Aktivnosti projekta',
     image: 'Digitalne vještine za moderne učionice.webp',
+    images: ['Digitalne vještine za moderne učionice.webp'],
     body: `U okviru Erasmus+ VETechConn projekta, Mašinski fakultet Univerziteta „Džemal Bijedić“ u Mostaru uspješno je realizovao program cjeloživotnog učenja „Digitalne kompetencije za nastavnike u srednjem strukovnom obrazovanju“.
 
     Ukupno 20 učesnika uspješno je završilo jedan ili više specijalizovanih kurseva koji pokrivaju nove digitalne tehnologije, uključujući:
@@ -90,11 +94,13 @@ const newsItems = [
     },
   {
     id: 'radionica-digitalne-pismenosti-zagreb',
+    eventType: 'past',
     title: 'Radionica digitalne pismenosti u Zagrebu',
     excerpt: 'U sklopu Erasmus+ projekta, u Zagrebu je održana radionica usmjerena na jačanje digitalnih kompetencija i primjenu savremenih alata u obrazovanju.',
     date: '',
     category: 'Aktivnosti projekta',
     image: '/Radionica digitalne pismenosti u Zagrebu.webp',
+    images: ['/Radionica digitalne pismenosti u Zagrebu.webp'],
     body: `U sklopu Erasmus+ projekta, u Zagrebu je uspješno održana Radionica digitalne pismenosti, koja je okupila projektne partnere s ciljem jačanja digitalnih kompetencija, razmjene znanja i unapređenja modernih pristupa obrazovanju. Tokom programa, učesnici su imali priliku da se uključe u specijalizovane obuke usmjerene na primjenu vještačke inteligencije u obrazovanju, korištenje platforme Google Classroom i drugih digitalnih alata, kao i razvoj multimedijalnog sadržaja za nastavni proces.
 
     Poseban segment programa uključivao je posjetu Regionalnom centru kompetencija u Tehničkoj školi Ruđer Bošković, gdje su partneri stekli vrijedan uvid u primjere najboljih praksi u tehničkom obrazovanju, digitalizaciji nastavnih procesa i razvoju kompetencija za buduće stručnjake. Ova razmjena iskustava dodatno je ojačala međunarodnu saradnju među partnerima i otvorila nove mogućnosti za implementaciju inovativnih obrazovnih modela.
@@ -105,6 +111,7 @@ const newsItems = [
   },
   {
     id: 'digitalne-vjestine-podgorica',
+    eventType: 'past',
     date: '',
     image: '/Digitalne vještine koje čine razliku1.webp',
     images: [
@@ -119,6 +126,7 @@ const newsItems = [
   },
     {
     id: 'radionica-sarajevo',
+    eventType: 'past',
     date: '',
     image: '/Radionica u Sarajevu1.webp',
     images: [
@@ -134,6 +142,7 @@ const newsItems = [
   },
   {
     id: 'simpozij-podgorica',
+    eventType: 'past',
     date: '',
     image: '/Simpozij u Podgorici1.webp',
     images: [
@@ -148,6 +157,7 @@ const newsItems = [
   },
     {
     id: 'izvjestaj-analiza-vjestina',
+    eventType: 'past',
     date: '',
     image: '',
     title: 'Izvještaj o analizi nedostataka vještina',
@@ -159,8 +169,10 @@ const newsItems = [
   },
   {
     id: 'pocetni-sastanak',
+    eventType: 'past',
     date: '28.01.2025.',
     image: '/pocetniSastanak.webp',
+    images: ['/pocetniSastanak.webp'],
     title: 'Početni sastanak',
     excerpt:
       'Svih 14 projektnih partnera okupilo se 28. januara 2025. godine u Zagrebu kako bi razgovarali o narednim koracima i uspješnoj implementaciji projektnih aktivnosti.',
@@ -596,7 +608,7 @@ const partners = [
 function getRoute(): { page: Page; articleId?: string } {
   const value = window.location.hash.replace(/^#\/?/, '') || 'pocetna';
   if (value.startsWith('vijesti/')) return { page: 'article', articleId: value.replace('vijesti/', '') };
-  const pages: Record<string, Page> = { pocetna: 'home', 'o-nama': 'about', partneri: 'partners', vijesti: 'news', kontakt: 'contact' };
+  const pages: Record<string, Page> = { pocetna: 'home', 'o-nama': 'about', partneri: 'partners', vijesti: 'news', galerija: 'gallery', kontakt: 'contact' };
   return { page: pages[value] ?? 'home' };
 }
 function App() {
@@ -641,19 +653,352 @@ const languages: { value: Language; label: string; flag: string }[] = [
     alt="VETechConn"
     className="brand-logo"
   />
-</button><button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">{menuOpen ? <X /> : <Menu />}</button><nav className={menuOpen ? 'main-nav is-open' : 'main-nav'}>{(['about', 'partners', 'news', 'contact'] as const).map((key) => <button key={key} onClick={() => go({ about: 'o-nama', partners: 'partneri', news: 'vijesti', contact: 'kontakt' }[key])}>{t.nav[key]}</button>)}<div className="language-picker" ref={languagePickerRef}><button className="language-trigger" onClick={() => setLanguageOpen(!languageOpen)} aria-expanded={languageOpen}><img
+</button><button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">{menuOpen ? <X /> : <Menu />}</button><nav className={menuOpen ? 'main-nav is-open' : 'main-nav'}>{(['about', 'partners', 'news', 'gallery', 'contact'] as const).map((key) => <button key={key} onClick={() => go({ about: 'o-nama', partners: 'partneri', news: 'vijesti', gallery: 'galerija', contact: 'kontakt' }[key])}>{t.nav[key]}</button>)}<div className="language-picker" ref={languagePickerRef}><button className="language-trigger" onClick={() => setLanguageOpen(!languageOpen)} aria-expanded={languageOpen}><img
   className="flag-image"
   src={languages.find((item) => item.value === language)?.flag ?? '/flags/bosnia.png'}
   alt=""
 /><span>{language === 'sr' ? 'СР' : language.toUpperCase()}</span><ChevronDown size={14} /></button>{languageOpen && <div className="language-menu">{languages.map((item) => <button className={language === item.value ? 'language-option active' : 'language-option'} key={item.value} onClick={() => changeLanguage(item.value)}><img className="flag-image" src={item.flag} alt="" /><span>{item.label}</span><b>{item.value === 'sr' ? 'СР' : item.value.toUpperCase()}</b></button>)}</div>}</div></nav></header>
-    <main>{route.page === 'home' && <Home t={t} go={go} language={language} />} {route.page === 'about' && <About t={t} language={language} />} {route.page === 'partners' && <Partners t={t} language={language} />} {route.page === 'news' && <News t={t} go={go} language={language} />} {route.page === 'article' && <Article t={t} id={route.articleId ?? ''} go={go} language={language} />} {route.page === 'contact' && <Contact t={t} language={language} />}</main>
+    <main>{route.page === 'home' && <Home t={t} go={go} language={language} />} {route.page === 'about' && <About t={t} language={language} />} {route.page === 'partners' && <Partners t={t} language={language} />} {route.page === 'news' && <News t={t} go={go} language={language} />} {route.page === 'gallery' && <Gallery language={language} />} {route.page === 'article' && <Article t={t} id={route.articleId ?? ''} go={go} language={language} />} {route.page === 'contact' && <Contact t={t} language={language} />}</main>
     <Footer t={t} go={go} language={language} />
   </div>;
 }
 function PageIntro({ kicker, title, lead }: { kicker: string; title: string; lead?: string }) { 
   return <section className="page-intro"><div className="section-wrap"><p className="eyebrow"><span /> {kicker}</p><h1>{title}</h1>{lead && <p>{lead}</p>}</div></section>; 
 }
-function Home({t, go, language, }: {t: Copy; go: (path: string) => void; language: Language;}) {
+
+type MapCountry = {
+  name: string;
+  code: string;
+  longitude: number;
+  latitude: number;
+  atlasName: string;
+  color: string;
+};
+
+const mapCountries: MapCountry[] = [
+  {
+    name: 'Bosna i Hercegovina',
+    code: 'BiH',
+    longitude: 17.7,
+    latitude: 44.2,
+    atlasName: 'Bosnia and Herz.',
+    color: '#f08a4b',
+  },
+  {
+    name: 'Hrvatska',
+    code: 'HR',
+    longitude: 15.5,
+    latitude: 45.1,
+    atlasName: 'Croatia',
+    color: '#2864c7',
+  },
+  {
+    name: 'Slovenija',
+    code: 'SLO',
+    longitude: 14.5,
+    latitude: 46.1,
+    atlasName: 'Slovenia',
+    color: '#14a99a',
+  },
+  {
+    name: 'Crna Gora',
+    code: 'CG',
+    longitude: 19.2,
+    latitude: 42.7,
+    atlasName: 'Montenegro',
+    color: '#e8a13b',
+  },
+];
+
+const MAP_W = 520;
+const MAP_H = 350;
+const MAP_CENTER_LON = 18;
+const MAP_CENTER_LAT = 44.4;
+const MAP_SPAN_LAT = 20;
+const DEG = Math.PI / 180;
+
+const centerProjY = Math.log(
+  Math.tan(Math.PI / 4 + (MAP_CENTER_LAT * DEG) / 2)
+);
+
+const MAP_SCALE =
+  (MAP_W / MAP_SPAN_LAT) * (360 / (2 * Math.PI));
+
+const centerProjX = MAP_CENTER_LON * DEG;
+
+function projectMapPoint(
+  longitude: number,
+  latitude: number
+): [number, number] {
+  const x =
+    (longitude * DEG - centerProjX) * MAP_SCALE +
+    MAP_W / 2;
+
+  const y =
+    MAP_H / 2 -
+    (
+      Math.log(
+        Math.tan(Math.PI / 4 + (latitude * DEG) / 2)
+      ) - centerProjY
+    ) * MAP_SCALE;
+
+  return [x, y];
+}
+
+function mapCoordinatesToPath(
+  coordinates: number[][]
+): string {
+  return (
+    coordinates
+      .map(([longitude, latitude], index) => {
+        const [x, y] = projectMapPoint(longitude, latitude);
+
+        return `${index === 0 ? 'M' : 'L'}${x.toFixed(2)} ${y.toFixed(2)}`;
+      })
+      .join(' ') + ' Z'
+  );
+}
+
+function getMapPath(geometry: any): string {
+  const polygons =
+    geometry.type === 'Polygon'
+      ? [geometry.coordinates]
+      : geometry.coordinates;
+
+  return polygons
+    .flatMap((polygon: number[][][]) =>
+      polygon.map(mapCoordinatesToPath)
+    )
+    .join(' ');
+}
+
+const europeNames = new Set([
+  'Italy',
+  'Switzerland',
+  'Austria',
+  'Slovenia',
+  'Croatia',
+  'Bosnia and Herz.',
+  'Montenegro',
+  'Serbia',
+  'Kosovo',
+  'Albania',
+  'North Macedonia',
+  'Macedonia',
+  'Greece',
+  'Bulgaria',
+  'Romania',
+  'Hungary',
+  'Slovakia',
+  'Czechia',
+  'Poland',
+  'Germany',
+  'Ukraine',
+]);
+
+const topoData = topoDataRaw as any;
+
+const europeFeatures = (
+  feature(
+    topoData,
+    topoData.objects.countries
+  ) as any
+).features.filter((country: any) =>
+  europeNames.has(country.properties.name)
+);
+
+function EuropePartnerMap({ language }: { language: Language }) {
+  const [activeCountry, setActiveCountry] = useState('BiH');
+
+  const countryNames: Record<Language, Record<string, string>> = {
+    bs: { BiH: 'Bosna i Hercegovina', HR: 'Hrvatska', SLO: 'Slovenija', CG: 'Crna Gora' },
+    hr: { BiH: 'Bosna i Hercegovina', HR: 'Hrvatska', SLO: 'Slovenija', CG: 'Crna Gora' },
+    sr: { BiH: 'Босна и Херцеговина', HR: 'Хрватска', SLO: 'Словенија', CG: 'Црна Гора' },
+    sl: { BiH: 'Bosna in Hercegovina', HR: 'Hrvaška', SLO: 'Slovenija', CG: 'Črna gora' },
+    en: { BiH: 'Bosnia and Herzegovina', HR: 'Croatia', SLO: 'Slovenia', CG: 'Montenegro' },
+  };
+
+  const translatedCountryName = (code: string) => countryNames[language][code] ?? code;
+
+  const active =
+    mapCountries.find((country) => country.code === activeCountry) ??
+    mapCountries[0];
+
+  return (
+    <>
+      <div className="map-card is-ready">
+        <div className="map-ocean" />
+
+        <svg
+          className="europe-map"
+          viewBox={`0 0 ${MAP_W} ${MAP_H}`}
+          preserveAspectRatio="xMidYMid meet"
+          role="img"
+          aria-label={{
+            bs: 'Karta partnerskih zemalja na Balkanu',
+            hr: 'Karta partnerskih zemalja na Balkanu',
+            sr: 'Карта партнерских земаља на Балкану',
+            sl: 'Zemljevid partnerskih držav na Balkanu',
+            en: 'Map of partner countries in the Balkans',
+          }[language]}
+        >
+          <defs>
+            <filter
+              id="active-glow"
+              x="-40%"
+              y="-40%"
+              width="180%"
+              height="180%"
+            >
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          {europeFeatures.map((country: any) => {
+            const partner = mapCountries.find(
+              (item) => item.atlasName === country.properties.name
+            );
+
+            const isActive = partner?.code === activeCountry;
+
+            return (
+              <path
+                key={country.id}
+                d={getMapPath(country.geometry)}
+                className={`country-shape ${
+                  partner ? 'partner-shape' : ''
+                } ${isActive ? 'active-shape' : ''}`}
+                style={partner ? { color: partner.color } : undefined}
+                filter={isActive ? 'url(#active-glow)' : undefined}
+              />
+            );
+          })}
+
+          {mapCountries.map((country) => {
+            const [x, y] = projectMapPoint(
+              country.longitude,
+              country.latitude
+            );
+
+            const isActive = activeCountry === country.code;
+
+            return (
+              <g
+                key={country.code}
+                className={`country-marker ${
+                  isActive ? 'is-active' : ''
+                }`}
+                role="button"
+                tabIndex={0}
+                aria-label={translatedCountryName(country.code)}
+                onClick={() => setActiveCountry(country.code)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    setActiveCountry(country.code);
+                  }
+                }}
+              >
+                <circle
+                  key={`ripple-1-${country.code}-${isActive}`}
+                  cx={x}
+                  cy={y}
+                  r="9"
+                  fill="none"
+                  stroke={country.color}
+                  strokeWidth="3"
+                  className={isActive ? 'ripple-out' : ''}
+                />
+
+                <circle
+                  key={`ripple-2-${country.code}-${isActive}`}
+                  cx={x}
+                  cy={y}
+                  r="9"
+                  fill="none"
+                  stroke={country.color}
+                  strokeWidth="3"
+                  className={isActive ? 'ripple-out-2' : ''}
+                />
+
+                <circle
+                  cx={x}
+                  cy={y}
+                  r="19"
+                  fill={country.color}
+                  opacity=".18"
+                  className="marker-pulse"
+                />
+
+                <circle
+                  cx={x}
+                  cy={y}
+                  r="9"
+                  fill={country.color}
+                  className="marker-core"
+                />
+
+                <circle
+                  cx={x}
+                  cy={y}
+                  r="4"
+                  fill="#ffffff"
+                />
+
+                <text x={x + 16} y={y + 5} className="country-map-label">
+                  {translatedCountryName(country.code)}
+                </text>
+
+                <title>{translatedCountryName(country.code)}</title>
+              </g>
+            );
+          })}
+        </svg>
+
+        <div className="map-label">
+          <span
+            className="map-label-dot"
+            style={{ backgroundColor: active.color }}
+          />
+          <strong>{translatedCountryName(active.code)}</strong>
+        </div>
+      </div>
+
+      <div className="country-switcher" aria-label={{
+        bs: 'Odaberi partnersku zemlju',
+        hr: 'Odaberi partnersku zemlju',
+        sr: 'Изабери партнерску земљу',
+        sl: 'Izberi partnersko državo',
+        en: 'Choose a partner country',
+      }[language]}>
+        {mapCountries.map((country) => (
+          <button
+            key={country.code}
+            className={activeCountry === country.code ? 'selected' : ''}
+            onClick={() => setActiveCountry(country.code)}
+            aria-pressed={activeCountry === country.code}
+          >
+            <span style={{ backgroundColor: country.color }} />
+            {translatedCountryName(country.code)}
+          </button>
+        ))}
+      </div>
+    </>
+  );
+}
+function Home({
+  t,
+  go,
+  language,
+}: {
+  t: Copy;
+  go: (path: string) => void;
+  language: Language;
+}) {
   const region = {
     bs: 'u regionu',
     sr: 'у региону',
@@ -661,6 +1006,7 @@ function Home({t, go, language, }: {t: Copy; go: (path: string) => void; languag
     sl: 'v regiji',
     en: 'in the region',
   }[language];
+
   const countries = {
     bs: 'države partneri',
     sr: 'државе партнери',
@@ -668,6 +1014,7 @@ function Home({t, go, language, }: {t: Copy; go: (path: string) => void; languag
     sl: 'partnerske države',
     en: 'partner countries',
   }[language];
+
   const visualTitle = {
     bs: 'Učenje',
     sr: 'Учење',
@@ -675,6 +1022,7 @@ function Home({t, go, language, }: {t: Copy; go: (path: string) => void; languag
     sl: 'Učenje',
     en: 'Learning',
   }[language];
+
   const visualSubtitle = {
     bs: 'bez granica',
     sr: 'без граница',
@@ -682,6 +1030,7 @@ function Home({t, go, language, }: {t: Copy; go: (path: string) => void; languag
     sl: 'brez meja',
     en: 'without limits',
   }[language];
+
   return (
     <>
       <section className="home-hero section-wrap">
@@ -705,68 +1054,111 @@ function Home({t, go, language, }: {t: Copy; go: (path: string) => void; languag
           </button>
 
           <div className="hero-metrics">
-            <strong>14</strong>
-            <span>
-              {t.home.stat}
-              <br />
-              {region}
-            </span>
+            {/* Kartica 1: projektni partneri */}
+            <div className="metric-card">
+              <div className="metric-icon">
+                <Users size={24} />
+              </div>
 
-            <strong>03</strong>
-            <span>
-              {language === 'en'
-                ? 'partner'
-                : language === 'sr'
-                  ? 'државе'
-                  : 'države'}
-              <br />
-              {countries}
-            </span>
+              <strong>14</strong>
+
+              <span>
+                {language === 'en'
+                  ? 'project partners'
+                  : language === 'sr'
+                    ? 'пројектних партнера'
+                    : language === 'sl'
+                      ? 'projektnih partnerjev'
+                      : 'projektnih partnera'}
+              </span>
+            </div>
+
+            {/* Kartica 2: zemlje učesnice */}
+            <div className="metric-card">
+              <div className="metric-icon">
+                <Globe2 size={24} />
+              </div>
+
+              <strong>04</strong>
+
+              <span>
+                {language === 'en'
+                  ? 'participating countries'
+                  : language === 'sr'
+                    ? 'земље учеснице'
+                    : language === 'sl'
+                      ? 'sodelujoče države'
+                      : 'zemlje učesnice'}
+              </span>
+            </div>
+
+            {/* Kartica 3: napredak projekta */}
+            <div className="metric-card metric-progress">
+              <div className="metric-icon">
+                <Target size={24} />
+              </div>
+
+              <strong>86,7%</strong>
+
+              <span>
+                {language === 'en'
+                  ? 'project results completed'
+                  : language === 'sr'
+                    ? 'реализованих резултата'
+                    : language === 'sl'
+                      ? 'doseženih projektnih rezultatov'
+                      : 'realizovanih rezultata'}
+              </span>
+
+              <div className="progress-details">
+                <div
+                  className="progress-track"
+                  role="progressbar"
+                  aria-valuenow={13}
+                  aria-valuemin={0}
+                  aria-valuemax={15}
+                  aria-label="13 od 15 realizovanih rezultata"
+                >
+                  <div className="progress-fill" />
+                </div>
+
+                <small>
+                  {language === 'en'
+                    ? '13 of 15 results'
+                    : language === 'sr'
+                      ? '13 од 15 резултата'
+                      : language === 'sl'
+                        ? '13 od 15 rezultatov'
+                        : '13 od 15 rezultata'}
+                </small>
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="home-visual">
-          <div className="visual-ring" />
-
-          <div
-            className="hero-animation"
-            aria-label="Animated education network"
-          >
-            <div className="hero-core">
-              <Globe2 size={48} />
-            </div>
-
-            <div className="hero-orbit orbit-a">
-              <span>
-                <GraduationCap size={21} />
-              </span>
-            </div>
-
-            <div className="hero-orbit orbit-b">
-              <span>
-                <Network size={21} />
-              </span>
-            </div>
-
-            <div className="hero-orbit orbit-c">
-              <span>
-                <Target size={21} />
-              </span>
-            </div>
-
-            <i className="hero-particle particle-a" />
-            <i className="hero-particle particle-b" />
-            <i className="hero-particle particle-c" />
-          </div>
-
-          <div className="visual-label">
-            <Target size={18} />
+          <div className="visual-header">
             <span>
-              <b>{visualTitle}</b>
-              <br />
-              {visualSubtitle}
+              <Globe2 size={15} />
+              {{
+                bs: 'Partnerska mreža',
+                hr: 'Partnerska mreža',
+                sr: 'Партнерска мрежа',
+                sl: 'Partnerska mreža',
+                en: 'Partner network',
+              }[language]}
             </span>
+
+            <strong>{{
+              bs: '4 zemlje',
+              hr: '4 zemlje',
+              sr: '4 земље',
+              sl: '4 države',
+              en: '4 countries',
+            }[language]}</strong>
           </div>
+
+          <EuropePartnerMap language={language} />
         </div>
       </section>
 
@@ -776,11 +1168,13 @@ function Home({t, go, language, }: {t: Copy; go: (path: string) => void; languag
             <p className="eyebrow light">
               <span /> {t.about.kicker}
             </p>
+
             <h2>{t.home.impact}</h2>
           </div>
 
           <div>
             <p>{t.home.impactText}</p>
+
             <button
               className="text-button light"
               onClick={() => go('vijesti')}
@@ -797,6 +1191,7 @@ function Home({t, go, language, }: {t: Copy; go: (path: string) => void; languag
             <p className="eyebrow">
               <span /> {t.home.latest}
             </p>
+
             <h2>{t.news.title}</h2>
           </div>
 
@@ -859,6 +1254,14 @@ function News({
   go: (path: string) => void;
   language: Language;
 }) {
+  const [activeFilter, setActiveFilter] = useState<'old' | 'new'>('old');
+
+  const filteredNews = newsItems.filter((item) =>
+    activeFilter === 'old'
+      ? item.eventType === 'past'
+      : item.eventType === 'upcoming'
+  );
+
   return (
     <>
       <PageIntro
@@ -868,43 +1271,78 @@ function News({
       />
 
       <section className="section-wrap news-list">
-        {newsItems.map((item, index) => {
-          const translated =
-            newsTranslations[language][item.id] ??
-            newsTranslations.bs[item.id];
+        <div className="news-filters">
+          <button
+            type="button"
+            className={`news-filter-button ${
+              activeFilter === 'old' ? 'active' : ''
+            }`}
+            onClick={() => setActiveFilter('old')}
+          >
+            {t.news.pastEvents}
+          </button>
 
-          return (
-            <article
-              className={`news-row ${index === 0 ? 'featured' : ''} ${
-                item.image ? 'has-image' : 'no-image'
-              }`}
-              key={item.id}
-            >
-              {item.image && (
-                <img
-                  src={item.image}
-                  alt={translated.title}
-                />
-              )}
+          <button
+            type="button"
+            className={`news-filter-button ${
+              activeFilter === 'new' ? 'active' : ''
+            }`}
+            onClick={() => setActiveFilter('new')}
+          >
+            {t.news.upcomingEvents}
+          </button>
+        </div>
 
-              <div className="news-content">
-                <p className="eyebrow">
-                  <span /> {t.news.category}
-                </p>
+        {filteredNews.length > 0 ? (
+          filteredNews.map((item, index) => {
+            const translated =
+              newsTranslations[language][item.id] ??
+              newsTranslations.bs[item.id];
 
-                <h2>{translated.title}</h2>
-                <p>{translated.excerpt}</p>
+            return (
+              <article
+                className={`news-row ${index === 0 ? 'featured' : ''} ${
+                  item.image ? 'has-image' : 'no-image'
+                }`}
+                key={item.id}
+              >
+                {item.image && (
+                  <img
+                    src={item.image}
+                    alt={translated.title}
+                  />
+                )}
 
-                <button
-                  className="text-button"
-                  onClick={() => go(`vijesti/${item.id}`)}
-                >
-                  {t.news.read} <ArrowUpRight size={17} />
-                </button>
-              </div>
-            </article>
-          );
-        })}
+                <div className="news-content">
+                  <p className="eyebrow">
+                    <span /> {t.news.category}
+                  </p>
+
+                  <h2>{translated.title}</h2>
+
+                  <p>{translated.excerpt}</p>
+
+                  <button
+                    className="text-button"
+                    onClick={() => go(`vijesti/${item.id}`)}
+                  >
+                    {t.news.read} <ArrowUpRight size={17} />
+                  </button>
+                </div>
+              </article>
+            );
+          })
+        ) : (
+          <p className="news-empty">
+            {{
+              bs: 'Trenutno nema vijesti u ovoj kategoriji.',
+              en: 'There are no news items in this category yet.',
+              hr: 'Trenutačno nema vijesti u ovoj kategoriji.',
+              sr: 'Тренутно нема вести у овој категорији.',
+              sl: 'V tej kategoriji trenutno ni novic.',
+            }[language]}
+          </p>
+        )}
       </section>
     </>
   );
@@ -1212,6 +1650,69 @@ function Article({
     </section>
   );
 }
+function Gallery({
+  language,
+}: {
+  language: Language;
+}) {
+  const eventsWithImages = newsItems
+    .map((item) => {
+      const translated =
+        newsTranslations[language][item.id] ??
+        newsTranslations.bs[item.id];
+
+      const images =
+        'images' in item && Array.isArray(item.images)
+          ? item.images
+          : item.image
+            ? [item.image]
+            : [];
+
+      return {
+        id: item.id,
+        title: translated.title,
+        images,
+      };
+    })
+    .filter((event) => event.images.length > 0);
+
+  return (
+    <>
+      <PageIntro
+        kicker="GALLERY"
+        title={language === 'en' ? 'Project Gallery' : 'Galerija projekta'}
+        lead={
+          language === 'en'
+            ? 'Photos from VETechConn project events and activities.'
+            : 'Fotografije sa događaja i aktivnosti VETechConn projekta.'
+        }
+      />
+
+      <section className="section-wrap gallery-page">
+        {eventsWithImages.map((event) => (
+          <div className="gallery-event" key={event.id}>
+            <h2>{event.title}</h2>
+
+            <div className="gallery-grid">
+              {event.images.map((src, index) => (
+                <figure
+                  className="gallery-item"
+                  key={`${event.id}-${src}-${index}`}
+                >
+                  <img
+                    src={src}
+                    alt={`${event.title} — ${index + 1}`}
+                    loading="lazy"
+                  />
+                </figure>
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
+    </>
+  );
+}
 function Contact({ t, language }: { t: Copy; language: Language }) { const [sent, setSent] = useState(false); const submit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); const data = new FormData(event.currentTarget); const subject = encodeURIComponent('VETechConn upit'); const body = encodeURIComponent(`Ime: ${data.get('name')}\nE-mail: ${data.get('email')}\n\n${data.get('message')}`); setSent(true); window.location.href = `mailto:info@vetechconn.eu?subject=${subject}&body=${body}`; }; return <><PageIntro kicker={t.contact.kicker} title={t.contact.title} lead={t.contact.lead} /><section className="section-wrap contact-layout"><div className="contact-details"><div className="contact-icon"><Mail /></div><h2>VETech<em>Conn</em></h2><p>{({ bs: 'Otvoreni smo za nova partnerstva, ideje i pitanja.', sr: 'Отворени смо за нова партнерства, идеје и питања.', hr: 'Otvoreni smo za nova partnerstva, ideje i pitanja.', sl: 'Odprti smo za nova partnerstva, ideje in vprašanja.', en: 'We are open to new partnerships, ideas and questions.' }[language])}</p><a href="mailto:info@vetechconn.eu">info@vetechconn.eu</a></div><form className="contact-form" onSubmit={submit}><label>{t.contact.name}<input required name="name" placeholder="John Doe" /></label><label>{t.contact.email}<input required type="email" name="email" placeholder="john@example.com" /></label><label>{t.contact.message}<textarea required name="message" rows={6} placeholder={t.contact.message} /></label><button className="button button-primary" type="submit"><Send size={16} /> {t.contact.send}</button><small>{sent ? <span className="success"><Check size={14} /> {t.contact.success}</span> : t.contact.note}</small></form></section></>; }
 function Footer({ t, go, language }: { t: Copy; go: (path: string) => void; language: Language }) { const notice = { bs: 'Finansirano od strane Evropske unije. Međutim, izneseni stavovi i mišljenja su isključivo stavovi autora i ne odražavaju nužno stavove Evropske unije ili Izvršne agencije za obrazovanje i kulturu (EACEA).', sr: 'Финансирано од стране Европске уније. Изнети ставови и мишљења припадају искључиво ауторима.', hr: 'Financirano sredstvima Europske unije. Izneseni stavovi i mišljenja pripadaju isključivo autorima.', sl: 'Financira Evropska unija. Izražena stališča in mnenja pripadajo izključno avtorjem.', en: 'Funded by the European Union. Views and opinions expressed are solely those of the authors.' }[language]; return <footer><div className="section-wrap footer-top"><button className="brand footer-brand" onClick={() => go('pocetna')}>
   <img
@@ -1219,7 +1720,7 @@ function Footer({ t, go, language }: { t: Copy; go: (path: string) => void; lang
     alt="VETechConn"
     className="brand-logo"
   />
-</button><div className="footer-links"><button onClick={() => go('o-nama')}>{t.nav.about}</button><button onClick={() => go('vijesti')}>{t.nav.news}</button><button onClick={() => go('kontakt')}>{t.nav.contact}</button></div></div><div className="footer-eu"><img
+</button><div className="footer-links"><button onClick={() => go('o-nama')}>{t.nav.about}</button><button onClick={() => go('vijesti')}>{t.nav.news}</button><button onClick={() => go('galerija')}>{t.nav.gallery}</button><button onClick={() => go('kontakt')}>{t.nav.contact}</button></div></div><div className="footer-eu"><img
   className="eu-flag"
   src="/euflag.jpg"
   alt="Zastava Evropske unije"
