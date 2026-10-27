@@ -1666,3 +1666,210 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+.gallery-page {
+  padding-top: 32px;
+  padding-bottom: 80px;
+}
+.gallery-event {
+  margin-bottom: 56px;
+}
+.gallery-event h2 {
+  margin: 0 0 20px;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.25;
+  color: var(--color-text, #172b4d);
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.gallery-item {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #edf0f4;
+}
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.gallery-item:hover img {
+  transform: scale(1.04);
+}
+@media (max-width: 800px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+@media (max-width: 520px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.map-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.map-label-institutions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.map-label-institution {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: 10px;
+  border-top: 1px solid #e7edf5;
+}
+
+.map-label-institution span {
+  color: #203653;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.map-label-institution small {
+  color: #e98243;
+  font-size: 12px;
+}
+
+/*ovo je ovdje dodano*/
+/* Lista institucija ispod interaktivne mape */
+.country-institutions {
+  width: 100%;
+  max-width: 1000px;
+  margin: 36px auto 0;
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  box-shadow: 0 16px 40px rgba(28, 49, 79, 0.06);
+}
+
+.country-institutions-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.country-institutions-heading .eyebrow {
+  margin-bottom: 10px;
+}
+
+.country-institutions-heading h2 {
+  margin: 0;
+  color: #172b4d;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.3;
+}
+
+.institution-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff0e5;
+  color: #e98243;
+  font-weight: 700;
+}
+
+.country-institutions-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.country-institution-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid #e7edf5;
+  border-radius: 16px;
+  background: #fbfcfe;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.country-institution-card:hover {
+  border-color: #f08a4b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(28, 49, 79, 0.06);
+}
+
+.institution-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #fff0e5;
+  color: #e98243;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.institution-details {
+  min-width: 0;
+}
+
+.institution-details h3 {
+  margin: 2px 0 12px;
+  color: #203653;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.institution-type {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #eaf2ff;
+  color: #2864c7;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.institution-type.associate {
+  background: #e7f7f3;
+  color: #138a7e;
+}
+
+@media (max-width: 700px) {
+  .country-institutions {
+    margin-top: 24px;
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .country-institutions-list {
+    grid-template-columns: 1fr;
+  }
+
+  .country-institution-card {
+    padding: 14px;
+  }
+}

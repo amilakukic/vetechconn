@@ -25,7 +25,7 @@ const copy: Record<Language, Copy> = {
     home: { kicker: 'ERASMUS+ EDU-CB-VET', title: 'Digitalne vještine za bolju budućnost.', lead: 'Zajedno gradimo mostove između obrazovanja, tehnologije i tržišta rada u Bosni i Hercegovini, Crnoj Gori i Hrvatskoj.', explore: 'Istražite projekat', latest: 'Najnovije vijesti', stat: 'aktivnih partnera', impact: 'Znanje koje povezuje.', impactText: 'VETechConn je inicijativa posvećena unapređenju digitalnih vještina instruktora strukovnog obrazovanja i obuke.', viewNews: 'Pogledajte vijesti' },
     about: { kicker: 'O NAMA', title: 'Od ideje do uticaja.', intro: 'VETechConn unapređuje digitalne vještine instruktora strukovnog obrazovanja i obuke.', body: 'Projekat povezuje stručnjake i institucije u Bosni i Hercegovini, Crnoj Gori i Hrvatskoj. Kroz međunarodnu saradnju, praktične radionice i dostupne digitalne resurse stvaramo sigurnije i savremenije obrazovanje.', groups: 'Ciljne grupe', goal: 'Naši ciljevi', goalText: 'Povezati obrazovanje, inovacije i tržište rada kroz razmjenu znanja i razvoj novih programa.' },
     partners: { kicker: 'ZAJEDNO SMO JAČI', title: 'Mreža koja pokreće promjenu.', lead: 'Naš projekat okuplja institucije, škole i stručnjake iz regiona i Evrope.' },
-    news: { kicker: 'VIJESTI I AKTIVNOSTI', title: 'Znanje u pokretu.', lead: 'Pratite radionice, susrete i rezultate projekta.', read: 'Pročitajte više', back: 'Nazad na vijesti', category: 'AKTIVNOST PROJEKTA', pastEvents: 'Stare vijesti', upcomingEvents: 'Nove vijesti' },
+    news: { kicker: 'VIJESTI I AKTIVNOSTI', title: 'Znanje u pokretu.', lead: 'Pratite radionice, susrete i rezultate projekta.', read: 'Pročitajte više', back: 'Nazad na vijesti', category: 'AKTIVNOST PROJEKTA', pastEvents: 'Stare vijesti', upcomingEvents: 'Predstojeće vijesti' },
     contact: { kicker: 'KONTAKT', title: 'Razgovarajmo o budućnosti.', lead: 'Imate pitanje ili želite da saznate više o projektu? Pošaljite nam poruku.', name: 'Ime i prezime', email: 'E-mail adresa', message: 'Poruka', send: 'Pošalji poruku', note: 'Klikom na dugme otvoriće se Outlook sa pripremljenom porukom.', success: 'Vaša poruka je pripremljena u Outlooku.' },
     footer: 'Finansirano od strane Evropske unije. Stavovi i mišljenja izraženi su isključivo stavovi autora.',
   },
@@ -34,7 +34,7 @@ const copy: Record<Language, Copy> = {
     home: { kicker: 'ERASMUS+ EDU-CB-VET', title: 'Digital skills for a better future.', lead: 'Together we build bridges between education, technology and the labour market in Bosnia and Herzegovina, Montenegro and Croatia.', explore: 'Explore the project', latest: 'Latest news', stat: 'active partners', impact: 'Knowledge that connects.', impactText: 'VETechConn is an initiative dedicated to improving the digital skills of vocational education and training instructors.', viewNews: 'View the news' },
     about: { kicker: 'ABOUT US', title: 'From idea to impact.', intro: 'VETechConn improves the digital skills of vocational education and training instructors.', body: 'The project connects experts and institutions in Bosnia and Herzegovina, Montenegro and Croatia. Through international cooperation, practical workshops and accessible digital resources, we create more confident and modern education.', groups: 'Target groups', goal: 'Our goals', goalText: 'Connect education, innovation and the labour market through knowledge exchange and new programme development.' },
     partners: { kicker: 'STRONGER TOGETHER', title: 'A network that drives change.', lead: 'Our project brings together institutions, schools and experts from the region and Europe.' },
-    news: { kicker: 'NEWS & ACTIVITIES', title: 'Knowledge in motion.', lead: 'Follow our workshops, meetings and project results.', read: 'Read more', back: 'Back to news', category: 'PROJECT ACTIVITY', pastEvents: 'Past Events', upcomingEvents: "What's Next?" },
+    news: { kicker: 'NEWS & ACTIVITIES', title: 'Knowledge in motion.', lead: 'Follow our workshops, meetings and project results.', read: 'Read more', back: 'Back to news', category: 'PROJECT ACTIVITY', pastEvents: 'Past Events', upcomingEvents: 'Upcoming News' },
     contact: { kicker: 'CONTACT', title: 'Let’s talk about the future.', lead: 'Have a question or want to learn more about the project? Send us a message.', name: 'Full name', email: 'Email address', message: 'Message', send: 'Send message', note: 'Clicking the button will open Outlook with a prepared message.', success: 'Your message has been prepared in Outlook.' },
     footer: 'Funded by the European Union. Views and opinions expressed are solely those of the authors.',
   },
@@ -43,7 +43,7 @@ const copy: Record<Language, Copy> = {
     home: { kicker: 'ERASMUS+ EDU-CB-VET', title: 'Digitalne vještine za bolju budućnost.', lead: 'Zajedno gradimo mostove između obrazovanja, tehnologije i tržišta rada u Bosni i Hercegovini, Crnoj Gori i Hrvatskoj.', explore: 'Istražite projekt', latest: 'Najnovije vijesti', stat: 'aktivnih partnera', impact: 'Znanje koje povezuje.', impactText: 'VETechConn je inicijativa posvećena unapređenju digitalnih vještina instruktora strukovnog obrazovanja i osposobljavanja.', viewNews: 'Pogledajte vijesti' },
     about: { kicker: 'O NAMA', title: 'Od ideje do utjecaja.', intro: 'VETechConn unapređuje digitalne vještine instruktora strukovnog obrazovanja i osposobljavanja.', body: 'Projekt povezuje stručnjake i institucije u Bosni i Hercegovini, Crnoj Gori i Hrvatskoj. Kroz međunarodnu suradnju, praktične radionice i dostupne digitalne resurse stvaramo sigurnije i suvremenije obrazovanje.', groups: 'Ciljne skupine', goal: 'Naši ciljevi', goalText: 'Povezati obrazovanje, inovacije i tržište rada kroz razmjenu znanja i razvoj novih programa.' },
     partners: { kicker: 'ZAJEDNO SMO JAČI', title: 'Mreža koja pokreće promjenu.', lead: 'Naš projekt okuplja institucije, škole i stručnjake iz regije i Europe.' },
-    news: { kicker: 'VIJESTI I AKTIVNOSTI', title: 'Znanje u pokretu.', lead: 'Pratite radionice, susrete i rezultate projekta.', read: 'Pročitajte više', back: 'Natrag na vijesti', category: 'AKTIVNOST PROJEKTA', pastEvents: 'Stare vijesti', upcomingEvents: 'Nove vijesti' },
+    news: { kicker: 'VIJESTI I AKTIVNOSTI', title: 'Znanje u pokretu.', lead: 'Pratite radionice, susrete i rezultate projekta.', read: 'Pročitajte više', back: 'Natrag na vijesti', category: 'AKTIVNOST PROJEKTA', pastEvents: 'Stare vijesti', upcomingEvents: 'Nadolazeće vijesti' },
     contact: { kicker: 'KONTAKT', title: 'Razgovarajmo o budućnosti.', lead: 'Imate pitanje ili želite saznati više o projektu? Pošaljite nam poruku.', name: 'Ime i prezime', email: 'E-mail adresa', message: 'Poruka', send: 'Pošalji poruku', note: 'Klikom na gumb otvorit će se Outlook s pripremljenom porukom.', success: 'Vaša je poruka pripremljena u Outlooku.' },
     footer: 'Financirano sredstvima Europske unije. Stavovi i mišljenja izraženi su isključivo stavovi autora.',
   },
@@ -52,7 +52,7 @@ const copy: Record<Language, Copy> = {
     home: { kicker: 'ERASMUS+ EDU-CB-VET', title: 'Дигиталне вештине за бољу будућност.', lead: 'Заједно градимо мостове између образовања, технологије и тржишта рада у Босни и Херцеговини, Црној Гори и Хрватској.', explore: 'Истражите пројекат', latest: 'Најновије вести', stat: 'активних партнера', impact: 'Знање које повезује.', impactText: 'VETechConn је иницијатива посвећена унапређењу дигиталних вештина инструктора стручног образовања и обуке.', viewNews: 'Погледајте вести' },
     about: { kicker: 'О НАМА', title: 'Од идеје до утицаја.', intro: 'VETechConn унапређује дигиталне вештине инструктора стручног образовања и обуке.', body: 'Пројекат повезује стручњаке и институције у Босни и Херцеговини, Црној Гори и Хрватској. Кроз међународну сарадњу, практичне радионице и доступне дигиталне ресурсе стварамо сигурније и савременије образовање.', groups: 'Циљне групе', goal: 'Наши циљеви', goalText: 'Повезати образовање, иновације и тржиште рада кроз размену знања и развој нових програма.' },
     partners: { kicker: 'ЗАЈЕДНО СМО ЈАЧИ', title: 'Мрежа која покреће промену.', lead: 'Наш пројекат окупља институције, школе и стручњаке из региона и Европе.' },
-    news: { kicker: 'ВЕСТИ И АКТИВНОСТИ', title: 'Знање у покрету.', lead: 'Пратите радионице, сусрете и резултате пројекта.', read: 'Прочитајте више', back: 'Назад на вести', category: 'АКТИВНОСТ ПРОЈЕКТА', pastEvents: 'Старе вести', upcomingEvents: 'Нове вести' },
+    news: { kicker: 'ВЕСТИ И АКТИВНОСТИ', title: 'Знање у покрету.', lead: 'Пратите радионице, сусрете и резултате пројекта.', read: 'Прочитајте више', back: 'Назад на вести', category: 'АКТИВНОСТ ПРОЈЕКТА', pastEvents: 'Старе вести', upcomingEvents: 'Предстојеће вести' },
     contact: { kicker: 'КОНТАКТ', title: 'Разговарајмо о будућности.', lead: 'Имате питање или желите да сазнате више о пројекту? Пошаљите нам поруку.', name: 'Име и презиме', email: 'Е-mail адреса', message: 'Порука', send: 'Пошаљи поруку', note: 'Кликом на дугме отвориће се Outlook са припремљеном поруком.', success: 'Ваша порука је припремљена у Outlook-у.' },
     footer: 'Финансирано средствима Европске уније. Ставови и мишљења изражени су искључиво ставови аутора.',
   },
@@ -66,7 +66,40 @@ const copy: Record<Language, Copy> = {
     footer: 'Financira Evropska unija. Izražena stališča in mnenja pripadajo izključno avtorjem.',
   },
 };
-const newsItems = [  
+const newsItems = [
+  {
+    id: 'digital-skills-classroom-podgorica-2026',
+    eventType: 'upcoming',
+    date: '17 November 2026',
+    category: 'Upcoming News',
+    image: '',
+    title: 'Digital Skills for the Classroom: VETechConn Experience and Future Perspectives',
+    excerpt: 'The VETechConn dissemination event in Podgorica will bring together educators, students, project partners and educational stakeholders to explore digital skills, learning resources, and the role of digital tools and AI in the classroom.',
+    body: `VETechConn Dissemination Event | 17 November 2026 | Podgorica, Montenegro
+
+How can digital technologies transform teaching and learning, and what do educators and students really need to make the most of them?
+
+The VETechConn project, co-funded by the European Union, is pleased to announce its upcoming dissemination event, “Digital Skills for the Classroom: VETechConn Experience and Future Perspectives,” taking place on 17 November 2026 at Hotel Kings Park in Podgorica, Montenegro.
+
+The event will bring together educators, students, project partners, and educational stakeholders to reflect on the project's achievements, exchange practical experiences, and explore opportunities for strengthening digital competencies in vocational education and training (VET).
+
+Participants will have the opportunity to discover the VETechConn digital learning platform and educational resources, gain insights into the training workshops held in Mostar, and hear firsthand experiences from teachers and trainers.
+
+A key highlight of the event will be the interactive panel discussion, “Digital Tools in the Classroom – Opportunity or Challenge?”, bringing together teachers and students to explore the benefits and challenges of integrating digital technologies and artificial intelligence into everyday teaching and learning.
+
+The event will also provide a space to share lessons learned, identify educators' evolving needs, and discuss future opportunities for applying innovative teaching approaches.
+
+Event details:
+Date: 17 November 2026
+Time: 10:00–14:00
+Venue: Hotel Kings Park, Podgorica, Montenegro
+Address: Kralja Nikole, Podgorica 81000
+
+Through knowledge exchange, collaboration, and practical insights, VETechConn continues to support the development of more innovative, inclusive, and digitally empowered learning environments.
+
+Stay tuned for further updates and join us in shaping the future of digital education.`
+  },
+  
   {
     id: 'digitalne-vjestine-moderne-ucionice',
     eventType: 'past',
@@ -192,6 +225,34 @@ const newsTranslations: Record<
   Record<string, NewsTranslation>
 > = {
   bs: {
+    'digital-skills-classroom-podgorica-2026': {
+      title: 'Digitalne vještine za učionicu: iskustva projekta VETechConn i buduće perspektive',
+      excerpt: 'Diseminacijski događaj projekta VETechConn u Podgorici okupit će nastavnike, učenike, projektne partnere i druge aktere obrazovanja radi razgovora o digitalnim vještinama, resursima za učenje i ulozi digitalnih alata i AI-ja u učionici.',
+      body: `Diseminacijski događaj projekta VETechConn | 17. novembar 2026. | Podgorica, Crna Gora
+
+Kako digitalne tehnologije mogu transformisati nastavu i učenje i šta je nastavnicima i učenicima zaista potrebno da ih iskoriste na najbolji način?
+
+Projekat VETechConn, sufinansiran sredstvima Evropske unije, najavljuje predstojeći diseminacijski događaj „Digitalne vještine za učionicu: iskustva projekta VETechConn i buduće perspektive“, koji će se održati 17. novembra 2026. godine u hotelu Kings Park u Podgorici, Crna Gora.
+
+Događaj će okupiti nastavnike, učenike, projektne partnere i druge aktere u obrazovanju kako bi razmotrili rezultate projekta, razmijenili praktična iskustva i istražili mogućnosti za jačanje digitalnih kompetencija u stručnom obrazovanju i obuci (VET).
+
+Učesnici će imati priliku upoznati digitalnu platformu za učenje i obrazovne resurse projekta VETechConn, saznati više o radionicama obuke održanim u Mostaru te čuti iskustva nastavnika i trenera iz prve ruke.
+
+Jedan od glavnih dijelova događaja bit će interaktivna panel-diskusija „Digitalni alati u učionici – prilika ili izazov?“, na kojoj će nastavnici i učenici razmatrati prednosti i izazove integracije digitalnih tehnologija i vještačke inteligencije u svakodnevnu nastavu i učenje.
+
+Događaj će pružiti i prostor za razmjenu naučenih lekcija, prepoznavanje promjenjivih potreba nastavnika i razgovor o budućim mogućnostima primjene inovativnih pristupa nastavi.
+
+Detalji događaja:
+Datum: 17. novembar 2026.
+Vrijeme: 10:00–14:00
+Mjesto: Hotel Kings Park, Podgorica, Crna Gora
+Adresa: Kralja Nikole, Podgorica 81000
+
+Kroz razmjenu znanja, saradnju i praktične uvide, VETechConn nastavlja podržavati razvoj inovativnijih, inkluzivnijih i digitalno osnaženih okruženja za učenje.
+
+Pratite nas za dodatne informacije i pridružite nam se u oblikovanju budućnosti digitalnog obrazovanja.`
+    },
+
     'digitalne-vjestine-moderne-ucionice': {
       title: 'Digitalne vještine za moderne učionice',
       excerpt: 'Mašinski fakultet Univerziteta „Džemal Bijedić“ u Mostaru realizovao je program cjeloživotnog učenja za unapređenje digitalnih kompetencija nastavnika.',
@@ -230,6 +291,12 @@ const newsTranslations: Record<
   },
 
   en: {
+    'digital-skills-classroom-podgorica-2026': {
+      title: 'Digital Skills for the Classroom: VETechConn Experience and Future Perspectives',
+      excerpt: 'The VETechConn dissemination event in Podgorica will bring together educators, students, project partners and educational stakeholders to explore digital skills, learning resources, and the role of digital tools and AI in the classroom.',
+      body: newsItems[0].body,
+    },
+
     'digitalne-vjestine-moderne-ucionice': {
       title: 'Digital Skills for Modern Classrooms',
       excerpt: 'The Faculty of Mechanical Engineering at the University “Džemal Bijedić” in Mostar delivered a lifelong learning programme to improve teachers’ digital competences.',
@@ -315,6 +382,34 @@ This panel explored how institutions can help schools overcome barriers and cont
   },
 
   hr: {
+    'digital-skills-classroom-podgorica-2026': {
+      title: 'Digitalne vještine za učionicu: iskustvo projekta VETechConn i buduće perspektive',
+      excerpt: 'Diseminacijski događaj projekta VETechConn u Podgorici okupit će nastavnike, učenike, projektne partnere i druge dionike obrazovanja radi razgovora o digitalnim vještinama, obrazovnim resursima te ulozi digitalnih alata i umjetne inteligencije u učionici.',
+      body: `Diseminacijski događaj projekta VETechConn | 17. studenoga 2026. | Podgorica, Crna Gora
+
+Kako digitalne tehnologije mogu transformirati poučavanje i učenje te što je nastavnicima i učenicima doista potrebno kako bi ih najbolje iskoristili?
+
+Projekt VETechConn, sufinanciran sredstvima Europske unije, najavljuje nadolazeći diseminacijski događaj „Digitalne vještine za učionicu: iskustvo projekta VETechConn i buduće perspektive“, koji će se održati 17. studenoga 2026. u hotelu Kings Park u Podgorici, Crna Gora.
+
+Događaj će okupiti nastavnike, učenike, projektne partnere i druge dionike u obrazovanju kako bi razmotrili postignuća projekta, razmijenili praktična iskustva i istražili mogućnosti jačanja digitalnih kompetencija u strukovnom obrazovanju i osposobljavanju (VET).
+
+Sudionici će imati priliku upoznati digitalnu platformu za učenje i obrazovne resurse projekta VETechConn, saznati više o radionicama održanima u Mostaru te iz prve ruke čuti iskustva nastavnika i edukatora.
+
+Jedan od ključnih dijelova događaja bit će interaktivna panel-rasprava „Digitalni alati u učionici – prilika ili izazov?“, na kojoj će nastavnici i učenici razmotriti prednosti i izazove uključivanja digitalnih tehnologija i umjetne inteligencije u svakodnevno poučavanje i učenje.
+
+Događaj će pružiti i prostor za razmjenu naučenih lekcija, prepoznavanje promjenjivih potreba nastavnika i razgovor o budućim mogućnostima primjene inovativnih pristupa poučavanju.
+
+Detalji događaja:
+Datum: 17. studenoga 2026.
+Vrijeme: 10:00–14:00
+Mjesto: Hotel Kings Park, Podgorica, Crna Gora
+Adresa: Kralja Nikole, Podgorica 81000
+
+Razmjenom znanja, suradnjom i praktičnim uvidima VETechConn nastavlja podupirati razvoj inovativnijih, uključivijih i digitalno osnaženih okruženja za učenje.
+
+Pratite nas za nove informacije i pridružite nam se u oblikovanju budućnosti digitalnog obrazovanja.`
+    },
+
     'digitalne-vjestine-moderne-ucionice': {
       title: 'Digitalne vještine za moderne učionice',
       excerpt: 'Strojarski fakultet Sveučilišta „Džemal Bijedić“ u Mostaru proveo je program cjeloživotnog učenja za unaprjeđenje digitalnih kompetencija nastavnika.',
@@ -400,6 +495,34 @@ Panel je prikazao kako institucije mogu pomoći školama u prevladavanju preprek
   },
 
   sr: {
+    'digital-skills-classroom-podgorica-2026': {
+      title: 'Дигиталне вештине за учионицу: искуства пројекта VETechConn и будуће перспективе',
+      excerpt: 'Дисеминациони догађај пројекта VETechConn у Подгорици окупиће наставнике, ученике, пројектне партнере и друге актере у образовању ради разговора о дигиталним вештинама, образовним ресурсима и улози дигиталних алата и вештачке интелигенције у учионици.',
+      body: `Дисеминациони догађај пројекта VETechConn | 17. новембар 2026. | Подгорица, Црна Гора
+
+Како дигиталне технологије могу да трансформишу наставу и учење и шта је наставницима и ученицима заиста потребно да би их најбоље искористили?
+
+Пројекат VETechConn, суфинансиран средствима Европске уније, најављује предстојећи дисеминациони догађај „Дигиталне вештине за учионицу: искуства пројекта VETechConn и будуће перспективе“, који ће се одржати 17. новембра 2026. године у хотелу Kings Park у Подгорици, Црна Гора.
+
+Догађај ће окупити наставнике, ученике, пројектне партнере и друге актере у образовању како би размотрили резултате пројекта, разменили практична искуства и истражили могућности за јачање дигиталних компетенција у стручном образовању и обуци (VET).
+
+Учесници ће имати прилику да упознају дигиталну платформу за учење и образовне ресурсе пројекта VETechConn, сазнају више о радионицама одржаним у Мостару и чују непосредна искуства наставника и тренера.
+
+Један од главних делова догађаја биће интерактивна панел-дискусија „Дигитални алати у учионици – прилика или изазов?“, која ће окупити наставнике и ученике како би размотрили предности и изазове интеграције дигиталних технологија и вештачке интелигенције у свакодневну наставу и учење.
+
+Догађај ће такође пружити простор за размену научених лекција, препознавање променљивих потреба наставника и разговор о будућим могућностима примене иновативних приступа настави.
+
+Детаљи догађаја:
+Датум: 17. новембар 2026.
+Време: 10:00–14:00
+Место: Хотел Kings Park, Подгорица, Црна Гора
+Адреса: Краља Николе, Подгорица 81000
+
+Кроз размену знања, сарадњу и практичне увиде, VETechConn наставља да подржава развој иновативнијих, инклузивнијих и дигитално оснажених окружења за учење.
+
+Пратите нас за додатне информације и придружите нам се у обликовању будућности дигиталног образовања.`
+    },
+
     'digitalne-vjestine-moderne-ucionice': {
       title: 'Дигиталне вештине за модерне учионице',
       excerpt: 'Машински факултет Универзитета „Џемал Биједић“ у Мостару реализовао је програм целоживотног учења за унапређење дигиталних компетенција наставника.',
@@ -485,6 +608,34 @@ Panel je prikazao kako institucije mogu pomoći školama u prevladavanju preprek
   },
 
   sl: {
+    'digital-skills-classroom-podgorica-2026': {
+      title: 'Digitalne spretnosti za učilnico: izkušnje projekta VETechConn in prihodnji obeti',
+      excerpt: 'Diseminacijski dogodek projekta VETechConn v Podgorici bo povezal učitelje, dijake, projektne partnerje in druge deležnike v izobraževanju, da bi razpravljali o digitalnih spretnostih, učnih virih ter vlogi digitalnih orodij in umetne inteligence v učilnici.',
+      body: `Diseminacijski dogodek projekta VETechConn | 17. november 2026 | Podgorica, Črna gora
+
+Kako lahko digitalne tehnologije preoblikujejo poučevanje in učenje ter kaj učitelji in učenci zares potrebujejo, da jih čim bolje izkoristijo?
+
+Projekt VETechConn, ki ga sofinancira Evropska unija, napoveduje prihajajoči diseminacijski dogodek „Digitalne spretnosti za učilnico: izkušnje projekta VETechConn in prihodnji obeti“, ki bo potekal 17. novembra 2026 v hotelu Kings Park v Podgorici v Črni gori.
+
+Dogodek bo povezal učitelje, dijake, projektne partnerje in druge deležnike v izobraževanju, da bi razmislili o dosežkih projekta, izmenjali praktične izkušnje ter raziskali možnosti za krepitev digitalnih kompetenc v poklicnem izobraževanju in usposabljanju (VET).
+
+Udeleženci bodo lahko spoznali digitalno učno platformo in izobraževalne vire projekta VETechConn, izvedeli več o usposabljanjih, ki so potekala v Mostarju, ter prisluhnili izkušnjam učiteljev in trenerjev iz prve roke.
+
+Pomemben del dogodka bo interaktivna panelna razprava „Digitalna orodja v učilnici – priložnost ali izziv?“, na kateri bodo učitelji in dijaki raziskali prednosti in izzive vključevanja digitalnih tehnologij in umetne inteligence v vsakodnevno poučevanje in učenje.
+
+Dogodek bo ponudil tudi prostor za izmenjavo pridobljenih spoznanj, prepoznavanje spreminjajočih se potreb učiteljev ter razpravo o prihodnjih možnostih uporabe inovativnih pristopov k poučevanju.
+
+Podrobnosti dogodka:
+Datum: 17. november 2026
+Čas: 10.00–14.00
+Prizorišče: Hotel Kings Park, Podgorica, Črna gora
+Naslov: Kralja Nikole, Podgorica 81000
+
+Z izmenjavo znanja, sodelovanjem in praktičnimi spoznanji VETechConn še naprej podpira razvoj bolj inovativnih, vključujočih in digitalno opolnomočenih učnih okolij.
+
+Spremljajte nas za dodatne informacije in se nam pridružite pri oblikovanju prihodnosti digitalnega izobraževanja.`
+    },
+
     'digitalne-vjestine-moderne-ucionice': {
       title: 'Digitalne spretnosti za sodobne učilnice',
       excerpt: 'Strojna fakulteta Univerze „Džemal Bijedić“ v Mostarju je izvedla program vseživljenjskega učenja za izboljšanje digitalnih kompetenc učiteljev.',
@@ -709,11 +860,163 @@ const mapCountries: MapCountry[] = [
     color: '#e8a13b',
   },
 ];
+type Institution = {
+  name: string;
+  country: string;
+  type: 'Partner' | 'Associate';
+};
+
+const institutions: Institution[] = [
+  {
+    name: 'Sveučilište Algebra',
+    country: 'HR',
+    type: 'Partner',
+  },
+  {
+    name: 'Javni zavod Cene Štupar-Center za izobraževanje Ljubljana',
+    country: 'SLO',
+    type: 'Partner',
+  },
+  {
+    name: 'Ljudska Univerza, Zavod za izobraževanje in kulturo, Rogaška Slatina',
+    country: 'SLO',
+    type: 'Partner',
+  },
+  {
+    name: 'Verlab Institut',
+    country: 'BiH',
+    type: 'Partner',
+  },
+  {
+    name: 'Centar za stručno obrazovanje Podgorica',
+    country: 'CG',
+    type: 'Partner',
+  },
+  {
+    name: 'Univerzitet Džemal Bijedić Mostar',
+    country: 'BiH',
+    type: 'Partner',
+  },
+  {
+    name: 'JU Institut za razvoj preduniverzitetskog obrazovanja',
+    country: 'BiH',
+    type: 'Partner',
+  },
+  {
+    name: 'JU Zavod za odgoj i obrazovanje, Široki Brijeg',
+    country: 'BiH',
+    type: 'Partner',
+  },
+  {
+    name: 'JU Srednja stručna škola Nikšić',
+    country: 'CG',
+    type: 'Partner',
+  },
+  {
+    name: 'JU Srednja elektrotehnička škola Vaso Aligrudić Podgorica',
+    country: 'CG',
+    type: 'Partner',
+  },
+  {
+    name: 'JU Srednja mašinska tehnička škola Sarajevo',
+    country: 'BiH',
+    type: 'Partner',
+  },
+  {
+    name: 'Javna ustanova Srednjoškolski centar Vogošća',
+    country: 'BiH',
+    type: 'Partner',
+  },
+  {
+    name: 'Pedagoški zavod BPK Goražde',
+    country: 'BiH',
+    type: 'Associate',
+  },
+  {
+    name: 'Pedagoški zavod Zeničko-dobojskog kantona',
+    country: 'BiH',
+    type: 'Associate',
+  },
+];
+
+const institutionNameTranslations: Record<Language, Record<string, string>> = {
+  // Bosanski prikazuje nazive iz izvornog spiska.
+  bs: {},
+  hr: {
+    'Sveučilište Algebra': 'Sveučilište Algebra',
+    'Javni zavod Cene Štupar-Center za izobraževanje Ljubljana': 'Javna ustanova Cene Štupar – Obrazovni centar Ljubljana',
+    'Ljudska Univerza, Zavod za izobraževanje in kulturo, Rogaška Slatina': 'Učilište – Ustanova za obrazovanje i kulturu, Rogaška Slatina',
+    'Verlab Institut': 'Institut Verlab',
+    'Centar za stručno obrazovanje Podgorica': 'Centar za strukovno obrazovanje Podgorica',
+    'Univerzitet Džemal Bijedić Mostar': 'Sveučilište Džemal Bijedić u Mostaru',
+    'JU Institut za razvoj preduniverzitetskog obrazovanja': 'Javna ustanova – Institut za razvoj preduniverzitetskog obrazovanja',
+    'JU Zavod za odgoj i obrazovanje, Široki Brijeg': 'Javna ustanova Zavod za odgoj i obrazovanje, Široki Brijeg',
+    'JU Srednja stručna škola Nikšić': 'Javna ustanova Srednja strukovna škola Nikšić',
+    'JU Srednja elektrotehnička škola Vaso Aligrudić Podgorica': 'Javna ustanova Srednja elektrotehnička škola Vaso Aligrudić, Podgorica',
+    'JU Srednja mašinska tehnička škola Sarajevo': 'Javna ustanova Srednja strojarska tehnička škola Sarajevo',
+    'Javna ustanova Srednjoškolski centar Vogošća': 'Javna ustanova Srednjoškolski centar Vogošća',
+    'Pedagoški zavod BPK Goražde': 'Pedagoški zavod Bosansko-podrinjskog kantona Goražde',
+    'Pedagoški zavod Zeničko-dobojskog kantona': 'Pedagoški zavod Zeničko-dobojskog kantona',
+  },
+  sr: {
+    'Sveučilište Algebra': 'Универзитет Алгебра',
+    'Javni zavod Cene Štupar-Center za izobraževanje Ljubljana': 'Јавна установа Цене Штупар – Центар за образовање у Љубљани',
+    'Ljudska Univerza, Zavod za izobraževanje in kulturo, Rogaška Slatina': 'Народни универзитет – Завод за образовање и културу, Рогашка Слатина',
+    'Verlab Institut': 'Институт Верлаб',
+    'Centar za stručno obrazovanje Podgorica': 'Центар за стручно образовање Подгорица',
+    'Univerzitet Džemal Bijedić Mostar': 'Универзитет Џемал Биједић у Мостару',
+    'JU Institut za razvoj preduniverzitetskog obrazovanja': 'Јавна установа – Институт за развој предуниверзитетског образовања',
+    'JU Zavod za odgoj i obrazovanje, Široki Brijeg': 'Јавна установа Завод за васпитање и образовање, Широки Бријег',
+    'JU Srednja stručna škola Nikšić': 'Јавна установа Средња стручна школа Никшић',
+    'JU Srednja elektrotehnička škola Vaso Aligrudić Podgorica': 'Јавна установа Средња електротехничка школа Васо Алигрудић, Подгорица',
+    'JU Srednja mašinska tehnička škola Sarajevo': 'Јавна установа Средња машинска техничка школа Сарајево',
+    'Javna ustanova Srednjoškolski centar Vogošća': 'Јавна установа Средњошколски центар Вогошћа',
+    'Pedagoški zavod BPK Goražde': 'Педагошки завод Босанско-подрињског кантона Горажде',
+    'Pedagoški zavod Zeničko-dobojskog kantona': 'Педагошки завод Зеничко-добојског кантона',
+  },
+  sl: {
+    'Sveučilište Algebra': 'Univerza Algebra',
+    'Javni zavod Cene Štupar-Center za izobraževanje Ljubljana': 'Javni zavod Cene Štupar – Center za izobraževanje Ljubljana',
+    'Ljudska Univerza, Zavod za izobraževanje in kulturo, Rogaška Slatina': 'Ljudska univerza, Zavod za izobraževanje in kulturo, Rogaška Slatina',
+    'Verlab Institut': 'Inštitut Verlab',
+    'Centar za stručno obrazovanje Podgorica': 'Center za poklicno izobraževanje Podgorica',
+    'Univerzitet Džemal Bijedić Mostar': 'Univerza Džemala Bijedića v Mostarju',
+    'JU Institut za razvoj preduniverzitetskog obrazovanja': 'Javni zavod – Inštitut za razvoj preduniverzitetnega izobraževanja',
+    'JU Zavod za odgoj i obrazovanje, Široki Brijeg': 'Javni zavod za vzgojo in izobraževanje, Široki Brijeg',
+    'JU Srednja stručna škola Nikšić': 'Javni zavod Srednja poklicna šola Nikšić',
+    'JU Srednja elektrotehnička škola Vaso Aligrudić Podgorica': 'Javni zavod Srednja elektrotehniška šola Vaso Aligrudić, Podgorica',
+    'JU Srednja mašinska tehnička škola Sarajevo': 'Javni zavod Srednja strojna tehniška šola Sarajevo',
+    'Javna ustanova Srednjoškolski centar Vogošća': 'Javni zavod Srednješolski center Vogošća',
+    'Pedagoški zavod BPK Goražde': 'Pedagoški zavod Bosansko-podrinjskega kantona Goražde',
+    'Pedagoški zavod Zeničko-dobojskog kantona': 'Pedagoški zavod Zeniško-dobojskega kantona',
+  },
+  en: {
+    'Sveučilište Algebra': 'Algebra University',
+    'Javni zavod Cene Štupar-Center za izobraževanje Ljubljana': 'Cene Štupar Public Institution – Ljubljana Education Centre',
+    'Ljudska Univerza, Zavod za izobraževanje in kulturo, Rogaška Slatina': 'Adult Education Centre – Institute for Education and Culture, Rogaška Slatina',
+    'Verlab Institut': 'Verlab Institute',
+    'Centar za stručno obrazovanje Podgorica': 'Centre for Vocational Education, Podgorica',
+    'Univerzitet Džemal Bijedić Mostar': 'Džemal Bijedić University of Mostar',
+    'JU Institut za razvoj preduniverzitetskog obrazovanja': 'Public Institution – Institute for the Development of Pre-University Education',
+    'JU Zavod za odgoj i obrazovanje, Široki Brijeg': 'Public Institution for Education, Široki Brijeg',
+    'JU Srednja stručna škola Nikšić': 'Public Secondary Vocational School, Nikšić',
+    'JU Srednja elektrotehnička škola Vaso Aligrudić Podgorica': 'Vaso Aligrudić Public Secondary Electrical Engineering School, Podgorica',
+    'JU Srednja mašinska tehnička škola Sarajevo': 'Public Secondary Mechanical Engineering School, Sarajevo',
+    'Javna ustanova Srednjoškolski centar Vogošća': 'Vogošća Public Secondary School Centre',
+    'Pedagoški zavod BPK Goražde': 'Pedagogical Institute of the Bosnian-Podrinje Canton, Goražde',
+    'Pedagoški zavod Zeničko-dobojskog kantona': 'Pedagogical Institute of the Zenica-Doboj Canton',
+  },
+};
+
+function translateInstitutionName(name: string, language: Language): string {
+  return institutionNameTranslations[language][name] ?? name;
+}
 
 const MAP_W = 520;
 const MAP_H = 350;
+const MAP_OFFSET_Y = -65; // Pomjera geografsku kartu prema gore kako bi zemlje partnera ostale vidljive iznad kartice.
 const MAP_CENTER_LON = 18;
-const MAP_CENTER_LAT = 44.4;
+const MAP_CENTER_LAT = 42.8; // Pomjera zemlje od interesa prema gornjem dijelu prikaza, iznad kartice s institucijama.
 const MAP_SPAN_LAT = 20;
 const DEG = Math.PI / 180;
 
@@ -742,7 +1045,7 @@ function projectMapPoint(
       ) - centerProjY
     ) * MAP_SCALE;
 
-  return [x, y];
+  return [x, y + MAP_OFFSET_Y];
 }
 
 function mapCoordinatesToPath(
@@ -820,13 +1123,24 @@ function EuropePartnerMap({ language }: { language: Language }) {
 
   const translatedCountryName = (code: string) => countryNames[language][code] ?? code;
 
+  const institutionTypeNames: Record<Language, Record<Institution['type'], string>> = {
+    bs: { Partner: 'Partner', Associate: 'Pridruženi partner' },
+    hr: { Partner: 'Partner', Associate: 'Pridruženi partner' },
+    sr: { Partner: 'Партнер', Associate: 'Придружени партнер' },
+    sl: { Partner: 'Partner', Associate: 'Pridruženi partner' },
+    en: { Partner: 'Partner', Associate: 'Associate partner' },
+  };
+
   const active =
     mapCountries.find((country) => country.code === activeCountry) ??
     mapCountries[0];
 
+  const filteredInstitutions = institutions.filter(
+    (institution) => institution.country === activeCountry
+  );
   return (
     <>
-      <div className="map-card is-ready">
+      <div className="map-card is-ready" style={{ position: "relative", overflow: "hidden" }}>
         <div className="map-ocean" />
 
         <svg
@@ -959,12 +1273,106 @@ function EuropePartnerMap({ language }: { language: Language }) {
           })}
         </svg>
 
-        <div className="map-label">
-          <span
-            className="map-label-dot"
-            style={{ backgroundColor: active.color }}
-          />
-          <strong>{translatedCountryName(active.code)}</strong>
+        <div
+          className="map-label"
+          style={{
+            position: 'absolute',
+            zIndex: 2,
+            left: '4%',
+            bottom: '4%',
+            width: 'min(68%, 360px)',
+            maxHeight: '48%',
+            boxSizing: 'border-box',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '10px',
+            padding: '16px 18px',
+            overflow: 'hidden',
+            border: '1px solid rgba(218, 229, 241, 0.95)',
+            borderRadius: '18px',
+            background: 'rgba(255, 255, 255, 0.94)',
+            boxShadow: '0 12px 28px rgba(35, 61, 91, 0.12)',
+            backdropFilter: 'blur(6px)',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              flexShrink: 0,
+            }}
+          >
+            <span
+              className="map-label-dot"
+              style={{
+                backgroundColor: active.color,
+                flexShrink: 0,
+              }}
+            />
+            <strong
+              style={{
+                color: '#172b4d',
+                fontSize: 'clamp(14px, 1.5vw, 20px)',
+                lineHeight: 1.3,
+              }}
+            >
+              {translatedCountryName(active.code)}
+            </strong>
+            <span
+              style={{
+                marginLeft: 'auto',
+                color: '#64748b',
+                fontSize: '12px',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {filteredInstitutions.length}
+            </span>
+          </div>
+
+          <div
+            className="map-label-institutions"
+            style={{
+              minHeight: 0,
+              overflowY: 'auto',
+              overscrollBehavior: 'contain',
+              borderTop: '1px solid #e5edf5',
+            }}
+          >
+            {filteredInstitutions.map((institution) => (
+              <div
+                className="map-label-institution"
+                key={translateInstitutionName(institution.name, language)}
+                style={{
+                  padding: '9px 0',
+                  borderBottom: '1px solid #e5edf5',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'block',
+                    color: '#29415f',
+                    fontSize: '13px',
+                    lineHeight: 1.4,
+                    overflowWrap: 'anywhere',
+                  }}
+                >
+                  {translateInstitutionName(institution.name, language)}
+                </span>
+                <small
+                  style={{
+                    display: 'block',
+                    marginTop: '3px',
+                    color: active.color,
+                    fontSize: '11px',
+                  }}
+                >
+                  {institutionTypeNames[language][institution.type]}
+                </small>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -987,6 +1395,7 @@ function EuropePartnerMap({ language }: { language: Language }) {
           </button>
         ))}
       </div>
+
     </>
   );
 }
@@ -1204,25 +1613,76 @@ function Home({
         </div>
 
         <div className="featured-grid">
-          {newsItems.slice(0, 3).map((item) => (
-            <button
-              className="featured-card"
-              key={item.id}
-              onClick={() => go(`vijesti/${item.id}`)}
-            >
-              <img src={item.image} alt={item.title} />
+          {newsItems.slice(0, 3).map((item) => {
+            const translated =
+              newsTranslations[language][item.id] ??
+              newsTranslations.bs[item.id];
 
-              <span>{t.news.category}</span>
+            const upcomingLabel = {
+              bs: 'Predstojeći događaj',
+              sr: 'Предстојећи догађај',
+              hr: 'Nadolazeći događaj',
+              sl: 'Prihajajoči dogodek',
+              en: 'Upcoming event',
+            }[language];
 
-              <h3>{item.title}</h3>
+            return (
+              <button
+                className={`featured-card ${item.image ? 'has-image' : 'no-image'}`}
+                key={item.id}
+                onClick={() => go(`vijesti/${item.id}`)}
+              >
+                {item.image ? (
+                  <img src={item.image} alt={translated.title} />
+                ) : (
+                  <div
+                    className="featured-card-image-placeholder"
+                    role="img"
+                    aria-label={{
+                      bs: 'Slika nije dodana',
+                      sr: 'Слика није додата',
+                      hr: 'Slika nije dodana',
+                      sl: 'Slika ni dodana',
+                      en: 'No image added',
+                    }[language]}
+                    style={{
+                      minHeight: '220px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      background: 'linear-gradient(135deg, #e8edf5, #f5f7fb)',
+                      color: '#1b2948',
+                      fontSize: '1.1rem',
+                      fontWeight: 600,
+                      letterSpacing: '0.08em',
+                    }}
+                  >
+                    VETechConn
+                  </div>
+                )}
 
-              <p>{item.excerpt}</p>
+                {item.eventType === 'upcoming' && (
+                  <span className="featured-card-status">{upcomingLabel}</span>
+                )}
 
-              <b>
-                {t.news.read} <ArrowUpRight size={15} />
-              </b>
-            </button>
-          ))}
+                {item.eventType !== 'upcoming' && <span>{t.news.category}</span>}
+
+                <h3>{translated.title}</h3>
+
+                <p>{translated.excerpt}</p>
+
+                {item.date && (
+                  <p className="featured-card-date">
+                    <strong>{item.date}</strong>
+                  </p>
+                )}
+
+                <b>
+                  {t.news.read} <ArrowUpRight size={15} />
+                </b>
+              </button>
+            );
+          })}
         </div>
       </section>
     </>
